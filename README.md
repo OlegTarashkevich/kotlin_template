@@ -25,7 +25,7 @@ brew install cookiecutter
 Run:
 
 ```bash
-cookiecutter gh:thoughtbot/android-template
+cookiecutter gh:OlegTarashkevich/kotlin_template
 ```
 
 You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/thoughtbot/android-template/blob/master/cookiecutter.json) for the full list. To accept the configuration option you see in brackets, simply hit enter
