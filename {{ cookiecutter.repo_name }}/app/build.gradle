@@ -50,7 +50,7 @@ dependencies {
   compile "com.android.support:design:${supportLibraryVersion}"
   compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
 
-  % if cookiecutter.use_tests == 'yes' -%}
+  {% if cookiecutter.use_tests == 'yes' -%}
   //unit tests
   testCompile 'junit:junit:4.12'
   testCompile 'org.robolectric:robolectric:3.0'
