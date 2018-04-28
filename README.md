@@ -12,7 +12,7 @@ A [cookiecutter](https://github.com/audreyr/cookiecutter) :cookie: template for 
 
 ## Optional Dependencies
 - [RxJava](https://github.com/ReactiveX/RxJava) and [RxAndroid](https://github.com/ReactiveX/RxAndroid) :arrows_clockwise:
-- [Calligraphy](https://github.com/chrisjenx/Calligraphy)- Library for custom fonts :black_nib: (note: once there is backwards compatibility for Android O's full support of fonts, this can be :scissors:)
+- [Tests] List of different tests
 
 ## Usage
 
@@ -28,22 +28,4 @@ Run:
 cookiecutter gh:OlegTarashkevich/kotlin_template
 ```
 
-You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/thoughtbot/android-template/blob/master/cookiecutter.json) for the full list. To accept the configuration option you see in brackets, simply hit enter
-
-## License
-
-android-template is Copyright © 2016 thoughtbot. It is free software, and may be redistributed under the terms specified in the [LICENSE] file.
-
-[LICENSE]: LICENSE
-
-## About thoughtbot
-
-![thoughtbot](http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg)
-
-android-template is maintained and funded by thoughtbot, inc. The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-We love open source software! See [our other projects][community]. We are [available for hire][hire].
-
-[community]: https://thoughtbot.com/community?utm_source=github
-
-[hire]: https://thoughtbot.com?utm_source=github
+You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/OlegTarashkevich/kotlin_template/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/dependencies.gradle) for the full list. To accept the configuration option you see in brackets, simply hit enter

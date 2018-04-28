@@ -8,6 +8,7 @@ ext {
 
     // Libraries
     kotlinVer = '1.2.10'
+    ankoVer = '0.8.3'
     supportVersion = '27.0.2'
     daggerVersion = '2.14.1'
     butterKnifeVersion = '8.8.1'
@@ -44,6 +45,8 @@ ext {
     deps = [
 
             kotlinJRE          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVer",
+            kotlinReflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVer",
+            anko               : "org.jetbrains.anko:anko-common:$ankoVer",
 
             // UI
             appCompatSupport   : "com.android.support:appcompat-v7:${supportVersion}",
