@@ -73,7 +73,6 @@ android {
 
 ext {
     supportLibraryVersion = '27.0.1'
-    retrofitVersion = '2.1.0'
 }
 
 dependencies {
@@ -90,7 +89,7 @@ dependencies {
     implementation deps.appCompatSupport
     implementation deps.designAndroid
 
-            {% if cookiecutter.use_tests == 'yes' -%}
+    {% if cookiecutter.use_tests == 'yes' -%}
     //unit tests
     testCompile 'junit:junit:4.12'
     testCompile 'org.robolectric:robolectric:3.0'
@@ -102,27 +101,27 @@ dependencies {
     //automation tests
     androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
     androidTestCompile 'com.android.support.test:runner:1.0.1'
-    androidTestCompile "com.android.support:support-annotations:${supportLibraryVersion}"
-            {%- endif %}
+    implementation deps.annotations
+    {%- endif %}
 
-            //networking
-            {% if cookiecutter.use_retrofit == 'yes' -%}
+    //networking
+    {% if cookiecutter.use_retrofit == 'yes' -%}
     implementation deps.retrofit
     implementation deps.converterGson
     implementation deps.loggingInterceptor
-            {%- endif %}
-            {% if cookiecutter.use_rx == 'yes' -%}
+    {%- endif %}
+    % if cookiecutter.use_rx == 'yes' -%}
     implementation deps.retrofitRxJava
-            {%- endif %}
+    {%- endif %}
 
     //image caching and downloading
     implementation deps.picasso
 
-            {% if cookiecutter.use_rx == 'yes' -%}
+    {% if cookiecutter.use_rx == 'yes' -%}
     //rx
     implementation deps.rxJava
     implementation deps.rxAndroid
     implementation deps.javaxAnnotation
-            {%- endif %}
+    {%- endif %}
 
 }
