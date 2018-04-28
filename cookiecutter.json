@@ -6,6 +6,7 @@
     "package_path": "{{ cookiecutter.package_name | replace('.', '/') }}",
     "use_rx": "yes",
     "use_tests": "yes",
+    "use_retrofit": "yes",
 
     "_copy_without_render": [
         "gradlew",
