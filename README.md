@@ -27,5 +27,6 @@ Run:
 ```bash
 cookiecutter gh:OlegTarashkevich/kotlin_template
 ```
+In order to add/remove/modify dependencies - see [`dependencies.gradle`](https://github.com/OlegTarashkevich/kotlin_template/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/dependencies.gradle) for the full list.
 
-You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/OlegTarashkevich/kotlin_template/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/dependencies.gradle) for the full list. To accept the configuration option you see in brackets, simply hit enter
+You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/thoughtbot/android-template/blob/master/cookiecutter.json) for the full list. To accept the configuration option you see in brackets, simply hit enter
