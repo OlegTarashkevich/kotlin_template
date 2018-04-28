@@ -1,7 +1,7 @@
 {
     "project_name": "project name",
     "repo_name": "{{ cookiecutter.project_name | lower | replace(' ', '_') }}",
-    "company_name": "thoughtbot",
+    "company_name": "paralect",
     "package_name": "com.{{cookiecutter.company_name | lower }}.{{ cookiecutter.project_name | lower }}",
     "package_path": "{{ cookiecutter.package_name | replace('.', '/') }}",
     "use_rx": "yes",
