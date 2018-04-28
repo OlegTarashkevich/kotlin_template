@@ -66,8 +66,10 @@ dependencies {
   {%- endif %}
 
   //networking
+  {% if cookiecutter.use_retrofit == 'yes' -%}
   compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
   compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+  {%- endif %}
   {% if cookiecutter.use_rx == 'yes' -%}
   compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
   {%- endif %}
