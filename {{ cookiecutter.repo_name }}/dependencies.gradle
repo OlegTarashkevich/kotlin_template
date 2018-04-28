@@ -42,6 +42,13 @@ ext {
     crashlyticsVersion = '2.9.0'
     volleyVersion = '1.1.0'
 
+    junitVersion = '4.12'
+    robolectricVersion = '3.0'
+    mockitoCoreVersion = '2.7.5'
+    mockitoKotlinVersion = '1.3.0'
+    espressoCoreVersion = '3.0.1'
+    runnerTestVersion = '1.0.1'
+
     deps = [
 
             kotlinJRE          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVer",
@@ -105,5 +112,17 @@ ext {
             // Crash Handlers
             customCrash        : "cat.ereza:customactivityoncrash:${customCrashVersion}",
             crashlytics        : "com.crashlytics.sdk.android:crashlytics:${crashlyticsVersion}@aar",
+
+            //unit tests
+            junit              : "junit:junit:${junitVersion}",
+            robolectric        : "org.robolectric:robolectric:${robolectricVersion}",
+            mockitoCore        : "org.mockito:mockito-core:${mockitoCoreVersion}",
+            kotlinTestJunit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
+            kotlinTest         : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+            mockitoKotlin      : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+
+            //automation tests
+            espressoCore       : "com.android.support.test.espresso:espresso-core:${espressoCoreVersion}",
+            runnerTest         : "com.android.support.test:runner:${runnerTestVersion}",
     ]
 }
