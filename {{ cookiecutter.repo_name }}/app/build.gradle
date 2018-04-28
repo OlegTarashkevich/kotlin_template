@@ -21,11 +21,9 @@ android {
     compileSdkVersion compileSdkVer
 
     def versionMajor = 1
-    def versionGit = "git rev-list HEAD --count".execute().text.trim()
+    def versionMinor = 0
+    def versionPatch = "git rev-list HEAD --count".execute().text.trim()
     def versionBuild = 1
-
-    def versionMinor = versionGit.substring(0, 1).toInteger()
-    def versionPatch = versionGit.substring(1)
 
     defaultConfig {
         applicationId "$application_id"
