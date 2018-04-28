@@ -3,86 +3,126 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-  compileSdkVersion 27
-  buildToolsVersion "26.0.2"
-  defaultConfig {
-    applicationId "$application_id"
-    minSdkVersion 19
-    targetSdkVersion 27
-    versionCode 1
-    versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-  buildTypes {
-    release {
-      minifyEnabled false
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
-  }
 
-  lintOptions {
-    abortOnError false
-  }
+    dexOptions {
+        javaMaxHeapSize "8g"
+        jumboMode = true
+        preDexLibraries = false
+    }
 
-  sourceSets {
-    main.java.srcDirs += 'src/main/kotlin'
-    test.java.srcDirs += 'src/test/kotlin'
-  }
+    buildToolsVersion buildToolsVer
+    compileSdkVersion compileSdkVer
+
+    def versionMajor = 1
+    def versionGit = "git rev-list HEAD --count".execute().text.trim()
+    def versionBuild = 1
+
+    def versionMinor = versionGit.substring(0, 1).toInteger()
+    def versionPatch = versionGit.substring(1)
+
+    defaultConfig {
+        applicationId "$application_id"
+        minSdkVersion minSdkVer
+        targetSdkVersion targetSdkVer
+        versionCode versionBuild
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}-${versionBuild}"
+        archivesBaseName = "in Grabber $versionName"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            debuggable true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            multiDexEnabled true
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
 }
 
 ext {
-  supportLibraryVersion = '27.0.1'
-  retrofitVersion = '2.1.0'
+    supportLibraryVersion = '27.0.1'
+    retrofitVersion = '2.1.0'
 }
 
 dependencies {
-  compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(dir: 'libs', include: ['*.jar'])
 
-  def deps = rootProject.ext.deps
-  
-  //kotlin
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-  compile 'org.jetbrains.anko:anko-common:0.8.3'
+    def deps = rootProject.ext.deps
 
-  //android
-  compile "com.android.support:appcompat-v7:${supportLibraryVersion}"
-  compile "com.android.support:design:${supportLibraryVersion}"
-  compile "com.android.support:recyclerview-v7:${supportLibraryVersion}"
+    //kotlin
+    implementation deps.kotlinJRE
+    implementation deps.kotlinReflect
+    implementation deps.anko
 
-  {% if cookiecutter.use_tests == 'yes' -%}
-  //unit tests
-  testCompile 'junit:junit:4.12'
-  testCompile 'org.robolectric:robolectric:3.0'
-  testCompile 'org.mockito:mockito-core:2.7.5'
-  testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-  testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-  testCompile "com.nhaarman:mockito-kotlin:1.3.0"
+    //android
+    implementation deps.appCompatSupport
+    implementation deps.designAndroid
 
-  //automation tests
-  androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
-  androidTestCompile 'com.android.support.test:runner:1.0.1'
-  androidTestCompile "com.android.support:support-annotations:${supportLibraryVersion}"
-  {%- endif %}
+            {% if cookiecutter.use_tests == 'yes' -%}
+    //unit tests
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:3.0'
+    testCompile 'org.mockito:mockito-core:2.7.5'
+    testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+    testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
+    testCompile "com.nhaarman:mockito-kotlin:1.3.0"
 
-  //networking
-  {% if cookiecutter.use_retrofit == 'yes' -%}
-  compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
-  compile "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-  {%- endif %}
-  {% if cookiecutter.use_rx == 'yes' -%}
-  compile "com.squareup.retrofit2:adapter-rxjava:$retrofitVersion"
-  {%- endif %}
-  compile 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    //automation tests
+    androidTestCompile 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestCompile 'com.android.support.test:runner:1.0.1'
+    androidTestCompile "com.android.support:support-annotations:${supportLibraryVersion}"
+            {%- endif %}
 
-  //image caching and downloading
-  compile 'com.squareup.picasso:picasso:2.5.2'
+            //networking
+            {% if cookiecutter.use_retrofit == 'yes' -%}
+    implementation deps.retrofit
+    implementation deps.converterGson
+    implementation deps.loggingInterceptor
+            {%- endif %}
+            {% if cookiecutter.use_rx == 'yes' -%}
+    implementation deps.retrofitRxJava
+            {%- endif %}
 
-  {% if cookiecutter.use_rx == 'yes' -%}
-  //rx
-  compile 'io.reactivex:rxjava:1.1.6'
-  compile 'io.reactivex:rxandroid:1.1.0'
-  compile 'com.jakewharton.rxbinding:rxbinding-recyclerview-v7:0.4.0'
-  {%- endif %}
+    //image caching and downloading
+    implementation deps.picasso
+
+            {% if cookiecutter.use_rx == 'yes' -%}
+    //rx
+    implementation deps.rxJava
+    implementation deps.rxAndroid
+    implementation deps.javaxAnnotation
+            {%- endif %}
 
 }
