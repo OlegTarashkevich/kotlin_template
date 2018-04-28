@@ -28,4 +28,4 @@ Run:
 cookiecutter gh:OlegTarashkevich/kotlin_template
 ```
 
-You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/OlegTarashkevich/android-template/blob/master/{{ cookiecutter.repo_name }}/dependencies.gradle) for the full list. To accept the configuration option you see in brackets, simply hit enter
+You'll be prompted for various configuration options - see [`cookiecutter.json`](https://github.com/OlegTarashkevich/kotlin_template/blob/master/%7B%7B%20cookiecutter.repo_name%20%7D%7D/dependencies.gradle) for the full list. To accept the configuration option you see in brackets, simply hit enter
