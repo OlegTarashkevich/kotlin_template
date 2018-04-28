@@ -51,6 +51,7 @@ ext {
 
     deps = [
 
+            // Kotlin
             kotlinJRE          : "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlinVer",
             kotlinReflect      : "org.jetbrains.kotlin:kotlin-reflect:$kotlinVer",
             anko               : "org.jetbrains.anko:anko-common:$ankoVer",
@@ -117,8 +118,8 @@ ext {
             junit              : "junit:junit:${junitVersion}",
             robolectric        : "org.robolectric:robolectric:${robolectricVersion}",
             mockitoCore        : "org.mockito:mockito-core:${mockitoCoreVersion}",
-            kotlinTestJunit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version",
-            kotlinTest         : "org.jetbrains.kotlin:kotlin-test:$kotlin_version",
+            kotlinTestJunit    : "org.jetbrains.kotlin:kotlin-test-junit:$kotlinVer",
+            kotlinTest         : "org.jetbrains.kotlin:kotlin-test:$kotlinVer",
             mockitoKotlin      : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
 
             //automation tests
